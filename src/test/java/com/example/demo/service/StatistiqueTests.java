@@ -10,14 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest
-package com.example.demo.service;
-
-import com.example.demo.data.Voiture;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 class StatistiqueTests {
 
     @Test
@@ -55,8 +47,7 @@ class StatistiqueTests {
 
         StatistiqueImpl s = new StatistiqueImpl();
 
-        assertThrows(ArithmeticException.class,
-                () -> s.prixMoyen());
+        assertThrows(ArithmeticException.class,() -> s.prixMoyen());
     }
 
     @Test
@@ -73,5 +64,3 @@ class StatistiqueTests {
 }
 
 
-
-}
