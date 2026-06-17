@@ -2,14 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.data.Voiture;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-@SpringBootTest
 class StatistiqueTests {
 
     @Test
@@ -47,7 +43,8 @@ class StatistiqueTests {
 
         StatistiqueImpl s = new StatistiqueImpl();
 
-        assertThrows(ArithmeticException.class,() -> s.prixMoyen());
+        assertThrows(ArithmeticException.class,
+                () -> s.prixMoyen());
     }
 
     @Test
@@ -62,5 +59,3 @@ class StatistiqueTests {
         assertEquals(15000, e.getPrixMoyen());
     }
 }
-
-

@@ -1,28 +1,25 @@
 package com.example.demo.data;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 public class VoitureTest {
 
     @Test
     void creerVoiture(){
-        Voiture v = new Voiture("Audi", 30000);
-        v.setMarque("Audi");
-        assertEquals("Audi", v.getMarque());
-    }
 
-    @Test
-    void setId() {
         Voiture v = new Voiture();
 
-        v.setId(5);
+        v.setId(1);
+        v.setMarque("Audi");
+        v.setPrix(30000);
 
-        assertEquals(5, v.getId());
+        assertEquals(1, v.getId());
+        assertEquals("Audi", v.getMarque());
+        assertEquals(30000, v.getPrix());
 
+        assertNotNull(v.toString());
     }
+
 }
