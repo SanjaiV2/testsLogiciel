@@ -10,25 +10,37 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest
-public class StatistiqueTests {
+class StatistiqueTests {
 
     @MockBean
     StatistiqueImpl statistiqueImpl;
 
     @Test
-    void ajouterDeuxVoitures() throws ArithmeticException {
-        Voiture v1 = new Voiture("BMW", 20000);
-        Voiture v2 = new Voiture("Audi", 30000);
+    void testMockito() {
+        Statistique statistique = mock(Statistique.class);
+        when(statistique.prixMoyen())
+                .thenReturn(new Echantillon(2,25000));
+        Echantillon e = statistique.prixMoyen();
 
-        statistiqueImpl.ajouter(v1);
-        statistiqueImpl.ajouter(v2);
+        assertEquals(2, e.getNombreDeVoitures());
+        assertEquals(25000, e.getPrixMoyen());
 
-        when(statistiqueImpl.prixMoyen()).thenReturn(new Echantillon(2, 25000));
+        verify(statistique).prixMoyen();
+    }
 
-        Echantillon e = statistiqueImpl.prixMoyen();
+    @Test
+    void testPrixMoyen() {
+
+        StatistiqueImpl s = new StatistiqueImpl();
+
+        s.ajouter(new Voiture("BMW",20000));
+        s.ajouter(new Voiture("Audi",30000));
+
+        Echantillon e = s.prixMoyen();
 
         assertEquals(2, e.getNombreDeVoitures());
         assertEquals(25000, e.getPrixMoyen());
     }
+
 
 }

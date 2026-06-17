@@ -23,6 +23,6 @@ public class VoitureTest {
         v.setId(5);
 
         assertEquals(5, v.getId());
-    }
 
+    }
 }
