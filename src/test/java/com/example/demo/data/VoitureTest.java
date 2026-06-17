@@ -16,4 +16,13 @@ public class VoitureTest {
         assertEquals("Audi", v.getMarque());
     }
 
+    @Test
+    void setId() {
+        Voiture v = new Voiture();
+
+        v.setId(5);
+
+        assertEquals(5, v.getId());
+
+    }
 }
