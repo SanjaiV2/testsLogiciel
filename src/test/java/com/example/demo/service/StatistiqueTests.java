@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class StatistiqueTests {
 
-    @MockBean
-    StatistiqueImpl statistiqueImpl;
-
     @Test
     void testMockito() {
+
         Statistique statistique = mock(Statistique.class);
+
         when(statistique.prixMoyen())
                 .thenReturn(new Echantillon(2,25000));
+
         Echantillon e = statistique.prixMoyen();
 
         assertEquals(2, e.getNombreDeVoitures());
@@ -42,5 +42,25 @@ class StatistiqueTests {
         assertEquals(25000, e.getPrixMoyen());
     }
 
+    @Test
+    void testPrixMoyenException() {
 
+        StatistiqueImpl s = new StatistiqueImpl();
+
+        assertThrows(ArithmeticException.class,() -> s.prixMoyen());
+    }
+
+    @Test
+    void testEchantillonVide() {
+
+        Echantillon e = new Echantillon();
+
+        e.setNombreDeVoitures(3);
+        e.setPrixMoyen(15000);
+
+        assertEquals(3, e.getNombreDeVoitures());
+        assertEquals(15000, e.getPrixMoyen());
+    }
 }
+
+
